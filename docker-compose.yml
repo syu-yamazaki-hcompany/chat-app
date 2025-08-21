@@ -8,8 +8,8 @@ services:
       target: backend
     working_dir: /workspace/chat-app/backend
     ports:
-      - '3000:3000'
-      - '5555:5555' # Prisma Studioのポート
+      - '4000:3000'
+      - '6666:5555' # Prisma Studioのポート
     volumes:
       - .:/workspace/chat-app/:cached
       - backend_node_modules:/workspace/chat-app/backend/node_modules
@@ -26,7 +26,7 @@ services:
       target: frontend
     working_dir: /workspace/chat-app/frontend
     ports:
-      - '3001:3000'
+      - '4001:3000'
     volumes:
       - .:/workspace/chat-app/:cached
       - frontend_node_modules:/workspace/chat-app/frontend/node_modules
@@ -42,7 +42,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: chatdb
     ports:
-      - '5432:5432'
+      - '5433:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data
 

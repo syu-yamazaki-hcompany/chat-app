@@ -16,7 +16,7 @@ import { getMainDefinition } from "@apollo/client/utilities";
 
 // クエリとミューテーションがhttpで通信するための設定
 const httpLink = new HttpLink({
-  uri: process.env.NEXT_PUBLIC_GRAPHQL_HTTP ?? "http://localhost:3000/graphql",
+  uri: process.env.NEXT_PUBLIC_GRAPHQL_HTTP ?? "http://localhost:4000/graphql",
   credentials: "omit",
 });
 
@@ -26,7 +26,7 @@ const wsLink =
     ? new GraphQLWsLink(
         createClient({
           url:
-            process.env.NEXT_PUBLIC_GRAPHQL_WS ?? "ws://localhost:3000/graphql",
+            process.env.NEXT_PUBLIC_GRAPHQL_WS ?? "ws://localhost:4000/graphql",
           lazy: true,
           keepAlive: 20000,
           retryAttempts: 5,

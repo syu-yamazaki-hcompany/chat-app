@@ -5,9 +5,14 @@ import { join } from 'path';
 import { PrismaService } from './prisma/prisma.service';
 import { PubSubModule } from './pubsub/pubsub.module';
 import { MessageModule } from './message/message.module';
+import { AuthModule } from '@thallesp/nestjs-better-auth';
+import { auth } from './lib/auth';
 
 @Module({
   imports: [
+    AuthModule.forRoot({
+      auth,
+    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),

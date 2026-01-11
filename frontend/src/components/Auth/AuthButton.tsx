@@ -1,15 +1,19 @@
 "use client";
 
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "@/lib/auth-client";
 
 export default function AuthButton() {
-  const { data: session } = useSession();
+  const { data: session, isPending } = useSession();
+
+  if (isPending) {
+    return <p>読み込み中...</p>;
+  }
 
   if (session) {
     return (
       <div style={{ border: "1px solid #ccc", padding: "10px" }}>
         <p>ログイン中: {session.user?.email}</p>
-        <button onClick={() => signOut()}>ログアウト</button>
+        <button onClick={async () => await signOut()}>ログアウト</button>
       </div>
     );
   }
@@ -17,8 +21,12 @@ export default function AuthButton() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       <p>ログインしていません</p>
-      <button onClick={() => signIn("github")}>GitHubでログイン</button>
-      <button onClick={() => signIn("google")}>Googleでログイン</button>
+      <button onClick={async () => await signIn.social({ provider: "github" })}>
+        GitHubでログイン
+      </button>
+      <button onClick={async () => await signIn.social({ provider: "google" })}>
+        Googleでログイン
+      </button>
     </div>
   );
 }

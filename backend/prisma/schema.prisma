@@ -27,7 +27,7 @@ enum Role {
 }
 
 model User {
-  id            String    @id @default(uuid()) @db.Uuid // DB側でuuid型で保存する指示
+  id            String    @id @default(uuid())  // DB側でuuid型で保存する指示
   name          String
   email         String    @unique
   emailVerified Boolean
@@ -47,8 +47,8 @@ model User {
 }
 
 model Session {
-  id        String   @id @default(uuid()) @db.Uuid
-  userId    String   @db.Uuid
+  id        String   @id @default(uuid())
+  userId    String
   token     String   @unique
   expiresAt DateTime
   ipAddress String?
@@ -63,8 +63,8 @@ model Session {
 }
 
 model Account {
-  id                    String    @id @default(uuid()) @db.Uuid
-  userId                String    @db.Uuid
+  id                    String    @id @default(uuid())
+  userId                String
   accountId             String
   providerId            String
   accessToken           String?
@@ -84,7 +84,7 @@ model Account {
 }
 
 model Verification {
-  id         String   @id @default(uuid()) @db.Uuid
+  id         String   @id @default(uuid())
   identifier String
   value      String
   expiresAt  DateTime
@@ -96,9 +96,9 @@ model Verification {
 }
 
 model Message {
-  id        String   @id @default(uuid()) @db.Uuid
-  userId    String   @map("user_id") @db.Uuid
-  roomId    String   @map("room_id") @db.Uuid
+  id        String   @id @default(uuid()) 
+  userId    String   @map("user_id") 
+  roomId    String   @map("room_id") 
   content   String   @db.VarChar(1000)
   isEdited  Boolean  @default(false) @map("is_edited")
   createdAt DateTime @default(now()) @map("created_at")
@@ -109,9 +109,9 @@ model Message {
 }
 
 model Room {
-  id        String   @id @default(uuid()) @db.Uuid
+  id        String   @id @default(uuid()) 
   name      String
-  createdBy String   @map("created_by") @db.Uuid
+  createdBy String   @map("created_by") 
   isPrivate Boolean  @default(false) @map("is_private")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -122,10 +122,10 @@ model Room {
 }
 
 model RoomMember {
-  roomId    String   @map("room_id") @db.Uuid
-  userId    String   @map("user_id") @db.Uuid
+  roomId    String   @map("room_id") 
+  userId    String   @map("user_id") 
   role      Role     @default(MEMBER)
-  invitedBy String?  @map("invited_by") @db.Uuid
+  invitedBy String?  @map("invited_by") 
   isActive  Boolean  @default(true) @map("is_active")
   joinedAt  DateTime @default(now()) @map("joined_at")
 

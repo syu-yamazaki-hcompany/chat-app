@@ -3,7 +3,7 @@ CREATE TYPE "Role" AS ENUM ('ADMIN', 'MEMBER');
 
 -- CreateTable
 CREATE TABLE "user" (
-    "id" UUID NOT NULL,
+    "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "emailVerified" BOOLEAN NOT NULL,
@@ -17,8 +17,8 @@ CREATE TABLE "user" (
 
 -- CreateTable
 CREATE TABLE "session" (
-    "id" UUID NOT NULL,
-    "userId" UUID NOT NULL,
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
     "token" TEXT NOT NULL,
     "expiresAt" TIMESTAMP(3) NOT NULL,
     "ipAddress" TEXT,
@@ -31,8 +31,8 @@ CREATE TABLE "session" (
 
 -- CreateTable
 CREATE TABLE "account" (
-    "id" UUID NOT NULL,
-    "userId" UUID NOT NULL,
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
     "accountId" TEXT NOT NULL,
     "providerId" TEXT NOT NULL,
     "accessToken" TEXT,
@@ -50,7 +50,7 @@ CREATE TABLE "account" (
 
 -- CreateTable
 CREATE TABLE "verification" (
-    "id" UUID NOT NULL,
+    "id" TEXT NOT NULL,
     "identifier" TEXT NOT NULL,
     "value" TEXT NOT NULL,
     "expiresAt" TIMESTAMP(3) NOT NULL,
@@ -62,9 +62,9 @@ CREATE TABLE "verification" (
 
 -- CreateTable
 CREATE TABLE "Message" (
-    "id" UUID NOT NULL,
-    "user_id" UUID NOT NULL,
-    "room_id" UUID NOT NULL,
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "room_id" TEXT NOT NULL,
     "content" VARCHAR(1000) NOT NULL,
     "is_edited" BOOLEAN NOT NULL DEFAULT false,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -75,9 +75,9 @@ CREATE TABLE "Message" (
 
 -- CreateTable
 CREATE TABLE "Room" (
-    "id" UUID NOT NULL,
+    "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "created_by" UUID NOT NULL,
+    "created_by" TEXT NOT NULL,
     "is_private" BOOLEAN NOT NULL DEFAULT false,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
@@ -87,10 +87,10 @@ CREATE TABLE "Room" (
 
 -- CreateTable
 CREATE TABLE "RoomMember" (
-    "room_id" UUID NOT NULL,
-    "user_id" UUID NOT NULL,
+    "room_id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
     "role" "Role" NOT NULL DEFAULT 'MEMBER',
-    "invited_by" UUID,
+    "invited_by" TEXT,
     "is_active" BOOLEAN NOT NULL DEFAULT true,
     "joined_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

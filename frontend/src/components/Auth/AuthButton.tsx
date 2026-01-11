@@ -21,10 +21,24 @@ export default function AuthButton() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       <p>ログインしていません</p>
-      <button onClick={async () => await signIn.social({ provider: "github" })}>
+      <button
+        onClick={async () =>
+          await signIn.social({
+            provider: "github",
+            callbackURL: process.env.NEXT_PUBLIC_FRONTEND_URL,
+          })
+        }
+      >
         GitHubでログイン
       </button>
-      <button onClick={async () => await signIn.social({ provider: "google" })}>
+      <button
+        onClick={async () =>
+          await signIn.social({
+            provider: "google",
+            callbackURL: process.env.NEXT_PUBLIC_FRONTEND_URL,
+          })
+        }
+      >
         Googleでログイン
       </button>
     </div>

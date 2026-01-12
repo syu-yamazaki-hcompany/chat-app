@@ -2,9 +2,9 @@
 
 import { getFragmentData, FragmentType } from "@/gql/fragment-masking";
 import { MessageRequestFragmentDoc } from "@/gql/graphql";
-import { useLiveMessages } from "@/app/rooms/_containers/messageList/useLiveMessages";
-import { useMessageScroll } from "@/app/rooms/_containers/messageList/useMessageScroll";
 import MessageItem from "../parts/messageItem/messageItem";
+import { useMessageScroll } from "./useMessageScroll";
+import { useLiveMessages } from "./useLiveMessages";
 
 export default function MessageList({
   roomId,

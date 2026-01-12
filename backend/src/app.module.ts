@@ -7,6 +7,7 @@ import { PubSubModule } from './pubsub/pubsub.module';
 import { MessageModule } from './message/message.module';
 import { AuthModule } from '@thallesp/nestjs-better-auth';
 import { auth } from './lib/auth';
+import { Request, Response } from 'express';
 
 @Module({
   imports: [
@@ -20,8 +21,21 @@ import { auth } from './lib/auth';
       subscriptions: {
         'graphql-ws': {
           path: '/graphql',
+          onConnect: () => true,
         },
       },
+      context: ({
+        req,
+        res,
+        extra,
+      }: {
+        req: Request;
+        res: Response;
+        extra?: { request: Request };
+      }) => ({
+        req: extra ? extra.request : req,
+        res,
+      }),
     }),
     PubSubModule,
     MessageModule,

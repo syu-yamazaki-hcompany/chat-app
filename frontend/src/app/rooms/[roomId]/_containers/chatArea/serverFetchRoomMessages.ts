@@ -2,12 +2,13 @@
 
 import "server-only";
 import { print } from "graphql";
-import { GetMessages } from "@/app/rooms/_lib/gql/messages";
+import { GetMessages } from "@/app/rooms/[roomId]/_lib/gql/messages";
 import {
   MessageRequestFragmentDoc,
   type MessageRequestFragment,
 } from "@/gql/graphql";
 import { makeFragmentData } from "@/gql/fragment-masking";
+import { headers } from "next/headers";
 
 const ENDPOINT =
   process.env.GRAPHQL_SERVER_HTTP ??
@@ -27,7 +28,10 @@ type GqlResp = {
 export async function serverFetchRoomMessages(roomId: string) {
   const res = await fetch(ENDPOINT, {
     method: "POST",
-    headers: { "content-type": "application/json" },
+    headers: {
+      "content-type": "application/json",
+      cookie: (await headers()).get("cookie") || "",
+    },
     body: JSON.stringify({
       query: GET_MESSAGES_SDL,
       variables: { roomId },

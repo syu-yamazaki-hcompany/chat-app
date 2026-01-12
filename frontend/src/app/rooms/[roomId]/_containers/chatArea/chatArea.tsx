@@ -2,7 +2,7 @@
 
 import MessageList from "../messageList/messageList";
 import MessageForm from "../messageForm/messageForm";
-import { serverFetchRoomMessages } from "@/app/rooms/_containers/chatArea/serverFetchRoomMessages";
+import { serverFetchRoomMessages } from "./serverFetchRoomMessages";
 
 export default async function ChatArea({
   roomId,

@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { CreateMessage } from "@/app/rooms/_lib/gql/messages";
+import { CreateMessage } from "@/app/rooms/[roomId]/_lib/gql/messages";
 
 export function useSendMessage(roomId: string, currentUserId: string) {
   const [mutate, { loading, error }] = useMutation(CreateMessage);

@@ -16,7 +16,7 @@ export default function Home() {
 
       <nav>
         <Link
-          href="/rooms"
+          href="/rooms/357422c8-e2cf-4a7c-8481-261a0df03bc4"
           style={{
             color: "#0070f3",
             textDecoration: "none",

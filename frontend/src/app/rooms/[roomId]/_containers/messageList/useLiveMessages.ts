@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useQuery, useSubscription } from "@apollo/client";
-import { GetMessages, OnMessageAdded } from "@/app/rooms/_lib/gql/messages";
+import {
+  GetMessages,
+  OnMessageAdded,
+} from "@/app/rooms/[roomId]/_lib/gql/messages";
 import {
   FragmentType,
   getFragmentData,
@@ -87,7 +90,7 @@ export function useLiveMessages(
     },
   });
 
-  // 
+  //
   const maskedFromQuery =
     data?.getMessages?.map((m) =>
       makeFragmentData(m as MessageRequestFragment, MessageRequestFragmentDoc)

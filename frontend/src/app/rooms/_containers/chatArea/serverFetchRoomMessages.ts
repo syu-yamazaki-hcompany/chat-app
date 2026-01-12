@@ -2,7 +2,7 @@
 
 import "server-only";
 import { print } from "graphql";
-import { GetMessages } from "@/app/rooms/[roomId]/_lib/gql/messages";
+import { GetMessages } from "@/app/rooms/_lib/gql/messages";
 import {
   MessageRequestFragmentDoc,
   type MessageRequestFragment,

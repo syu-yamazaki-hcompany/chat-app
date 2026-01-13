@@ -8,9 +8,9 @@ async function main() {
     where: { email: 'admin@example.com' },
     update: {},
     create: {
-      username: '管理者',
+      name: '管理者',
       email: 'admin@example.com',
-      passwordHash: 'dummyhash',
+      emailVerified: true,
     },
   });
 
@@ -18,9 +18,9 @@ async function main() {
     where: { email: 'user2@example.com' },
     update: {},
     create: {
-      username: 'ユーザー2',
+      name: 'ユーザー2',
       email: 'user2@example.com',
-      passwordHash: 'dummyhash2',
+      emailVerified: true,
     },
   });
 

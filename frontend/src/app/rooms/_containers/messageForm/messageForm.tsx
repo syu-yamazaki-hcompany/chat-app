@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
-import { useSendMessage } from "@/app/rooms/_containers/messageForm/useSendMessage";
+import { useSendMessage } from "./useSendMessage";
 
 export default function MessageForm({
   roomId,

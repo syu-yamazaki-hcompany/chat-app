@@ -3,9 +3,9 @@ import TopTab from "./_containers/parts/topTab";
 import RoomList from "./_containers/parts/roomList";
 import ChatArea from "./_containers/chatArea/chatArea";
 
-const ROOM_ID = "4a9eec10-222b-40e9-9461-9342ec0fe545";
-const ADMIN_ID = "436d578e-da32-43f1-a812-9d2f656a179f";
-const USER2_ID = "45ace999-9940-4a55-944d-2e32c9a216c0";
+const ROOM_ID = "357422c8-e2cf-4a7c-8481-261a0df03bc4";
+const ADMIN_ID = "af802d5c-539c-4c2a-a841-b1cdc2df3d52";
+const USER2_ID = "d41af4c0-8801-4c4f-bd14-1860d69f09a6";
 
 export default async function ChatPage({
   searchParams,

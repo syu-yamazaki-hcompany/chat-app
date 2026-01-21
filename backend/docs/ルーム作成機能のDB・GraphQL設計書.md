@@ -170,12 +170,22 @@ model RoomMember {
 
 ```prisma
 model User {
-  id            String    @id @default(uuid())
+  id            String    @id @default(uuid())  // DB側でuuid型で保存する指示
   name          String
   email         String    @unique
+  emailVerified Boolean
+  image         String?
+  deactivatedAt DateTime? @map("deactivated_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
 
+  messages       Message[]
   roomMembers    RoomMember[]
   createdRooms   Room[]       @relation("RoomCreatedBy")
   invitedMembers RoomMember[] @relation("InvitedBy")
+  accounts       Account[]
+  sessions       Session[]
+
+  @@map("user")
 }
 ```

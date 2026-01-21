@@ -17,7 +17,7 @@ import { getMainDefinition } from "@apollo/client/utilities";
 // クエリとミューテーションがhttpで通信するための設定
 const httpLink = new HttpLink({
   uri: process.env.NEXT_PUBLIC_GRAPHQL_HTTP ?? "http://localhost:4000/graphql",
-  credentials: "omit",
+  credentials: "include",
 });
 
 // サブスクリプションがwsで通信するための設定。切れづらく無駄に繋がらないように。

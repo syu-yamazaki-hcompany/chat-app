@@ -3,6 +3,200 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ━━━ 洗練されたストレンジャー・シングス風エフェクト ━━━ */
+
+/* 穏やかな稲妻（赤み強調） */
+@keyframes subtle-lightning {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  2%,
+  6% {
+    opacity: 0.15;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(220, 38, 38, 0.3) 0%,
+      transparent 70%
+    );
+  }
+  4% {
+    opacity: 0;
+  }
+}
+
+/* 赤いネオンパルス */
+@keyframes red-neon-pulse {
+  0%,
+  100% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #dc2626,
+      0 0 40px #dc2626, 0 0 70px #dc2626, 0 0 80px #dc2626;
+  }
+  50% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #dc2626, 0 0 20px #dc2626,
+      0 0 35px #dc2626, 0 0 40px #dc2626;
+  }
+}
+
+/* 穏やかなフリッカー */
+@keyframes gentle-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  41%,
+  43% {
+    opacity: 0.85;
+  }
+  42% {
+    opacity: 0.7;
+  }
+}
+
+/* 裏側の世界（赤黒ver） */
+@keyframes upside-down-red {
+  0%,
+  92%,
+  100% {
+    filter: none;
+  }
+  94% {
+    filter: invert(0.1) saturate(0) brightness(0.8) sepia(1) hue-rotate(-50deg);
+  }
+  96% {
+    filter: invert(0.15) saturate(0.3) brightness(0.7) sepia(0.8)
+      hue-rotate(-30deg);
+  }
+  98% {
+    filter: invert(0.1) saturate(0) brightness(0.8) sepia(1) hue-rotate(-50deg);
+  }
+}
+
+/* 穏やかな画面シェイク */
+@keyframes subtle-shake {
+  0%,
+  92%,
+  100% {
+    transform: translate(0, 0);
+  }
+  93%,
+  97% {
+    transform: translate(-2px, 1px);
+  }
+  94%,
+  98% {
+    transform: translate(2px, -1px);
+  }
+  95% {
+    transform: translate(-1px, 2px);
+  }
+  96% {
+    transform: translate(1px, -2px);
+  }
+}
+
+/* 浮遊（ゆっくり） */
+@keyframes slow-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* 赤いグロー */
+@keyframes red-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.4), 0 0 20px rgba(220, 38, 38, 0.3),
+      0 0 30px rgba(220, 38, 38, 0.2), inset 0 0 10px rgba(220, 38, 38, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.6), 0 0 30px rgba(220, 38, 38, 0.4),
+      0 0 40px rgba(220, 38, 38, 0.3), inset 0 0 15px rgba(220, 38, 38, 0.2);
+  }
+}
+
+/* スキャンライン（赤ver） */
+@keyframes red-scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* 穏やかなグリッチ */
+@keyframes subtle-glitch {
+  0%,
+  100% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  33% {
+    transform: translate(-1px, 1px);
+    filter: hue-rotate(-5deg);
+  }
+  66% {
+    transform: translate(1px, -1px);
+    filter: hue-rotate(5deg);
+  }
+}
+
+/* パーティクルのフェード */
+@keyframes particle-fade {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.subtle-lightning {
+  animation: subtle-lightning 8s infinite;
+}
+
+.red-neon-pulse {
+  animation: red-neon-pulse 3s ease-in-out infinite;
+}
+
+.gentle-flicker {
+  animation: gentle-flicker 4s infinite;
+}
+
+.upside-down-red {
+  animation: upside-down-red 15s infinite;
+}
+
+.subtle-shake {
+  animation: subtle-shake 15s infinite;
+}
+
+.slow-float {
+  animation: slow-float 8s ease-in-out infinite;
+}
+
+.red-glow {
+  animation: red-glow 4s ease-in-out infinite;
+}
+
+.red-scanline {
+  animation: red-scanline 6s linear infinite;
+}
+
+.subtle-glitch {
+  animation: subtle-glitch 5s infinite;
+}
+
+.particle-fade {
+  animation: particle-fade 3s ease-in-out infinite;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

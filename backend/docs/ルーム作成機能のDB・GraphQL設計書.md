@@ -30,18 +30,8 @@
 type RoomModel {
   id: ID!           "ルームID"
   name: String!     "ルーム名"
-}
-```
-
-### RoomDetailModel
-
-ルーム詳細情報（チャットルームでの表示用）
-
-```graphql
-type RoomDetailModel {
-  id: ID!                         "ルームID"
-  name: String!                   "ルーム名"
   members: [RoomMemberModel!]!    "アクティブなメンバーのみ"
+
 }
 ```
 

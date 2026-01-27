@@ -27,6 +27,10 @@ export type CreateMessageInput = {
   senderId: Scalars['ID']['input'];
 };
 
+export type CreateRoomInput = {
+  name: Scalars['String']['input'];
+};
+
 export type MessageModel = {
   __typename?: 'MessageModel';
   content: Scalars['String']['output'];
@@ -40,11 +44,17 @@ export type MessageModel = {
 export type Mutation = {
   __typename?: 'Mutation';
   createMessage: MessageModel;
+  createRoom: RoomModel;
 };
 
 
 export type MutationCreateMessageArgs = {
   input: CreateMessageInput;
+};
+
+
+export type MutationCreateRoomArgs = {
+  input: CreateRoomInput;
 };
 
 export type Query = {
@@ -55,6 +65,14 @@ export type Query = {
 
 export type QueryGetMessagesArgs = {
   roomId: Scalars['String']['input'];
+};
+
+export type RoomModel = {
+  __typename?: 'RoomModel';
+  createdAt: Scalars['DateTime']['output'];
+  createdBy: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type Subscription = {

@@ -28,6 +28,16 @@ type RoomModel {
   createdAt: DateTime!
 }
 
+type RoomMemberModel {
+  roomId: ID!
+  userId: ID!
+  role: String!
+  joinedAt: DateTime!
+  user: UserModel
+  invitedBy: ID
+  inviter: UserModel
+}
+
 type Query {
   getMessages(roomId: String!): [MessageModel!]!
 }
@@ -35,6 +45,7 @@ type Query {
 type Mutation {
   createMessage(input: CreateMessageInput!): MessageModel!
   createRoom(input: CreateRoomInput!): RoomModel!
+  joinRoom(roomId: ID!): RoomMemberModel!
 }
 
 input CreateMessageInput {

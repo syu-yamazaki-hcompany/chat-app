@@ -1,9 +1,11 @@
-import { Resolver, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Mutation, Args, ID } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@thallesp/nestjs-better-auth';
 import { RoomModel } from '../models/room.model';
+import { RoomMemberModel } from '../models/room-member.model';
 import { CreateRoomInput } from '../inputs/create-room.input';
 import { CreateRoomUseCase } from '../usecases/create-room.usecase';
+import { JoinRoomUseCase } from '../usecases/join-room.usecase';
 import {
   GqlAuth,
   BetterAuthUser,
@@ -11,7 +13,10 @@ import {
 
 @Resolver(() => RoomModel)
 export class RoomResolver {
-  constructor(private readonly createRoomUseCase: CreateRoomUseCase) {}
+  constructor(
+    private readonly createRoomUseCase: CreateRoomUseCase,
+    private readonly joinRoomUseCase: JoinRoomUseCase,
+  ) {}
 
   @Mutation(() => RoomModel)
   @UseGuards(AuthGuard)
@@ -23,5 +28,14 @@ export class RoomResolver {
       name: input.name,
       createdBy: user.id,
     });
+  }
+
+  @Mutation(() => RoomMemberModel)
+  @UseGuards(AuthGuard)
+  async joinRoom(
+    @Args('roomId', { type: () => ID }) roomId: string,
+    @GqlAuth() user: BetterAuthUser,
+  ): Promise<RoomMemberModel> {
+    return await this.joinRoomUseCase.execute(roomId, user.id);
   }
 }

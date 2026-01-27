@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { RoomResolver } from './resolvers/room.resolver';
 import { CreateRoomUseCase } from './usecases/create-room.usecase';
 import { JoinRoomUseCase } from './usecases/join-room.usecase';
+import { GetJoinedRoomsUseCase } from './usecases/get-joined-rooms.usecase';
 import { RoomDao } from './dao/room.dao';
 import { RoomMemberDao } from './dao/room-member.dao';
 import { RoomRepository } from './repositories/room.repository';
@@ -17,6 +18,7 @@ import { PrismaModule } from '../prisma/prisma.module';
     // UseCases
     CreateRoomUseCase,
     JoinRoomUseCase,
+    GetJoinedRoomsUseCase,
 
     // Repositories
     {

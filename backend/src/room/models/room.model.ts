@@ -1,4 +1,5 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { RoomMemberModel } from './room-member.model';
 
 @ObjectType()
 export class RoomModel {
@@ -13,4 +14,7 @@ export class RoomModel {
 
   @Field()
   createdAt: Date;
+
+  @Field(() => [RoomMemberModel], { nullable: true })
+  roomMembers?: RoomMemberModel[];
 }

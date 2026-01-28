@@ -49,6 +49,7 @@ type Mutation {
   createMessage(input: CreateMessageInput!): MessageModel!
   createRoom(input: CreateRoomInput!): RoomModel!
   joinRoom(roomId: ID!): RoomMemberModel!
+  leaveRoom(roomId: ID!): Boolean!
 }
 
 input CreateMessageInput {

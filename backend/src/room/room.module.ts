@@ -9,6 +9,7 @@ import { RoomRepository } from './repositories/room.repository';
 import { RoomMemberRepository } from './repositories/room-member.repository';
 import { PrismaModule } from '../prisma/prisma.module';
 import { GetUnjoinedRoomsUseCase } from './usecases/get-unjoined-rooms.usecase';
+import { LeaveRoomUseCase } from './usecases/leave-room.usecase';
 
 @Module({
   imports: [PrismaModule],
@@ -21,6 +22,7 @@ import { GetUnjoinedRoomsUseCase } from './usecases/get-unjoined-rooms.usecase';
     JoinRoomUseCase,
     GetJoinedRoomsUseCase,
     GetUnjoinedRoomsUseCase,
+    LeaveRoomUseCase,
 
     // Repositories
     {

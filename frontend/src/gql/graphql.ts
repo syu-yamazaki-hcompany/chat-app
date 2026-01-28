@@ -45,6 +45,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   createMessage: MessageModel;
   createRoom: RoomModel;
+  joinRoom: RoomMemberModel;
 };
 
 
@@ -57,14 +58,32 @@ export type MutationCreateRoomArgs = {
   input: CreateRoomInput;
 };
 
+
+export type MutationJoinRoomArgs = {
+  roomId: Scalars['ID']['input'];
+};
+
 export type Query = {
   __typename?: 'Query';
   getMessages: Array<MessageModel>;
+  joinedRooms: Array<RoomModel>;
+  unjoinedRooms: Array<RoomModel>;
 };
 
 
 export type QueryGetMessagesArgs = {
   roomId: Scalars['String']['input'];
+};
+
+export type RoomMemberModel = {
+  __typename?: 'RoomMemberModel';
+  invitedBy?: Maybe<Scalars['ID']['output']>;
+  inviter?: Maybe<UserModel>;
+  joinedAt: Scalars['DateTime']['output'];
+  role: Scalars['String']['output'];
+  roomId: Scalars['ID']['output'];
+  user?: Maybe<UserModel>;
+  userId: Scalars['ID']['output'];
 };
 
 export type RoomModel = {
@@ -73,6 +92,7 @@ export type RoomModel = {
   createdBy: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
+  roomMembers?: Maybe<Array<RoomMemberModel>>;
 };
 
 export type Subscription = {

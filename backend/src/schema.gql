@@ -42,6 +42,7 @@ type RoomModel {
 type Query {
   getMessages(roomId: String!): [MessageModel!]!
   joinedRooms: [RoomModel!]!
+  unjoinedRooms: [RoomModel!]!
 }
 
 type Mutation {

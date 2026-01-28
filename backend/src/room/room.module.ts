@@ -8,6 +8,7 @@ import { RoomMemberDao } from './dao/room-member.dao';
 import { RoomRepository } from './repositories/room.repository';
 import { RoomMemberRepository } from './repositories/room-member.repository';
 import { PrismaModule } from '../prisma/prisma.module';
+import { GetUnjoinedRoomsUseCase } from './usecases/get-unjoined-rooms.usecase';
 
 @Module({
   imports: [PrismaModule],
@@ -19,6 +20,7 @@ import { PrismaModule } from '../prisma/prisma.module';
     CreateRoomUseCase,
     JoinRoomUseCase,
     GetJoinedRoomsUseCase,
+    GetUnjoinedRoomsUseCase,
 
     // Repositories
     {

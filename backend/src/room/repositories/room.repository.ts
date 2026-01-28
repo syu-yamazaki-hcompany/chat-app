@@ -29,4 +29,5 @@ export interface CreateRoomData {
 export abstract class RoomRepository {
   abstract createRoom(input: CreateRoomData): Promise<Room>;
   abstract findJoinedRooms(userId: string): Promise<RoomWithMembers[]>;
+  abstract findUnjoinedRooms(userId: string): Promise<RoomWithMembers[]>;
 }

@@ -3,6 +3,7 @@ export type RoomMember = {
   userId: string;
   role: string;
   joinedAt: Date;
+  isActive: boolean;
   invitedBy: string | null;
   user?: {
     id: string;

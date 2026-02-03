@@ -13,8 +13,19 @@ export class RoomMemberDao extends RoomMemberRepository {
   }
 
   async addMember(input: AddMemberData): Promise<RoomMember> {
-    return await this.prisma.roomMember.create({
-      data: {
+    return await this.prisma.roomMember.upsert({
+      where: {
+        roomId_userId: {
+          roomId: input.roomId,
+          userId: input.userId,
+        },
+      },
+      update: {
+        isActive: true,
+        role: input.role,
+        invitedBy: input.invitedBy,
+      },
+      create: {
         roomId: input.roomId,
         userId: input.userId,
         role: input.role,

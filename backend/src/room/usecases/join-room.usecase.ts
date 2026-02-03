@@ -11,7 +11,7 @@ export class JoinRoomUseCase {
   async execute(roomId: string, userId: string): Promise<RoomMember> {
     // 既に参加しているかチェック
     const existing = await this.roomMemberRepository.findOne(roomId, userId);
-    if (existing) {
+    if (existing && existing.isActive) {
       throw new Error('既にこのルームに参加しています');
     }
 

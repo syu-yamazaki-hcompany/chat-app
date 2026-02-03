@@ -18,7 +18,7 @@ export class InviteToRoomUseCase {
       roomId,
       targetUserId,
     );
-    if (existing) {
+    if (existing && existing.isActive) {
       throw new Error('このユーザーは既にルームに参加しています');
     }
 

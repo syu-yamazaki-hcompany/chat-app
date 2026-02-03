@@ -8,7 +8,7 @@ export class LeaveRoomUseCase {
   async execute(roomId: string, userId: string): Promise<boolean> {
     // 参加しているかチェック
     const existing = await this.roomMemberRepository.findOne(roomId, userId);
-    if (!existing) {
+    if (!existing || !existing.isActive) {
       throw new Error('このルームに参加していません');
     }
 

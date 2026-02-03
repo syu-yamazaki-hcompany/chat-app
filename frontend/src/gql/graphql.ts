@@ -31,6 +31,11 @@ export type CreateRoomInput = {
   name: Scalars['String']['input'];
 };
 
+export type InviteToRoomInput = {
+  roomId: Scalars['ID']['input'];
+  userId: Scalars['ID']['input'];
+};
+
 export type MessageModel = {
   __typename?: 'MessageModel';
   content: Scalars['String']['output'];
@@ -45,6 +50,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   createMessage: MessageModel;
   createRoom: RoomModel;
+  inviteToRoom: RoomMemberModel;
   joinRoom: RoomMemberModel;
   leaveRoom: Scalars['Boolean']['output'];
 };
@@ -57,6 +63,11 @@ export type MutationCreateMessageArgs = {
 
 export type MutationCreateRoomArgs = {
   input: CreateRoomInput;
+};
+
+
+export type MutationInviteToRoomArgs = {
+  input: InviteToRoomInput;
 };
 
 

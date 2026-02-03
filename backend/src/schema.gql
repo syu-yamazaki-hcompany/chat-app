@@ -47,6 +47,7 @@ type Mutation {
   createRoom(input: CreateRoomInput!): RoomModel!
   joinRoom(roomId: ID!): RoomMemberModel!
   leaveRoom(roomId: ID!): Boolean!
+  inviteToRoom(input: InviteToRoomInput!): RoomMemberModel!
 }
 
 input CreateMessageInput {
@@ -62,6 +63,11 @@ input CreateMessageInput {
 
 input CreateRoomInput {
   name: String!
+}
+
+input InviteToRoomInput {
+  roomId: ID!
+  userId: ID!
 }
 
 type Subscription {

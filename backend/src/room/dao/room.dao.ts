@@ -4,7 +4,6 @@ import {
   RoomRepository,
   CreateRoomData,
   Room,
-  RoomWithMembers,
 } from '../repositories/room.repository';
 
 @Injectable()
@@ -22,29 +21,6 @@ export class RoomDao extends RoomRepository {
           create: {
             userId: input.createdBy,
             role: 'ADMIN',
-          },
-        },
-      },
-    });
-  }
-
-  async findJoinedRooms(userId: string): Promise<RoomWithMembers[]> {
-    return await this.prisma.room.findMany({
-      where: {
-        roomMembers: {
-          some: {
-            userId,
-            isActive: true,
-          },
-        },
-      },
-      include: {
-        roomMembers: {
-          where: {
-            isActive: true,
-          },
-          include: {
-            user: true,
           },
         },
       },

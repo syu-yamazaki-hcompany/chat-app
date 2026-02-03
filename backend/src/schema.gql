@@ -21,6 +21,13 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type RoomModel {
+  id: ID!
+  name: String!
+  createdBy: String!
+  createdAt: DateTime!
+}
+
 type RoomMemberModel {
   roomId: ID!
   userId: ID!
@@ -31,17 +38,8 @@ type RoomMemberModel {
   inviter: UserModel
 }
 
-type RoomModel {
-  id: ID!
-  name: String!
-  createdBy: String!
-  createdAt: DateTime!
-  roomMembers: [RoomMemberModel!]
-}
-
 type Query {
   getMessages(roomId: String!): [MessageModel!]!
-  joinedRooms: [RoomModel!]!
 }
 
 type Mutation {

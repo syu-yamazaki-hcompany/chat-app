@@ -11,7 +11,6 @@ import { PrismaModule } from '../prisma/prisma.module';
 import { GetUnjoinedRoomsUseCase } from './usecases/get-unjoined-rooms.usecase';
 import { LeaveRoomUseCase } from './usecases/leave-room.usecase';
 import { InviteToRoomUseCase } from './usecases/invite-to-room.usecase';
-import { GetRoomDetailUseCase } from './usecases/get-room-detail.usecase';
 
 @Module({
   imports: [PrismaModule],
@@ -26,7 +25,6 @@ import { GetRoomDetailUseCase } from './usecases/get-room-detail.usecase';
     GetUnjoinedRoomsUseCase,
     LeaveRoomUseCase,
     InviteToRoomUseCase,
-    GetRoomDetailUseCase,
 
     // Repositories
     {

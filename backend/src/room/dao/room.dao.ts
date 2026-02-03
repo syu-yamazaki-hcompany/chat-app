@@ -72,23 +72,4 @@ export class RoomDao extends RoomRepository {
       },
     });
   }
-
-  async findById(roomId: string): Promise<RoomWithMembers | null> {
-    return await this.prisma.room.findUnique({
-      where: {
-        id: roomId,
-      },
-      include: {
-        roomMembers: {
-          where: {
-            isActive: true,
-          },
-          include: {
-            user: true,
-            inviter: true,
-          },
-        },
-      },
-    });
-  }
 }

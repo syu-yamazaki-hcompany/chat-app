@@ -11,7 +11,6 @@ import { LeaveRoomUseCase } from '../usecases/leave-room.usecase';
 import { InviteToRoomUseCase } from '../usecases/invite-to-room.usecase';
 import { GetJoinedRoomsUseCase } from '../usecases/get-joined-rooms.usecase';
 import { GetUnjoinedRoomsUseCase } from '../usecases/get-unjoined-rooms.usecase';
-import { GetRoomDetailUseCase } from '../usecases/get-room-detail.usecase';
 import {
   GqlAuth,
   BetterAuthUser,
@@ -26,7 +25,6 @@ export class RoomResolver {
     private readonly inviteToRoomUseCase: InviteToRoomUseCase,
     private readonly getJoinedRoomsUseCase: GetJoinedRoomsUseCase,
     private readonly getUnjoinedRoomsUseCase: GetUnjoinedRoomsUseCase,
-    private readonly getRoomDetailUseCase: GetRoomDetailUseCase,
   ) {}
 
   @Query(() => [RoomModel])
@@ -39,14 +37,6 @@ export class RoomResolver {
   @UseGuards(AuthGuard)
   async unjoinedRooms(@GqlAuth() user: BetterAuthUser): Promise<RoomModel[]> {
     return await this.getUnjoinedRoomsUseCase.execute(user.id);
-  }
-
-  @Query(() => RoomModel, { nullable: true })
-  @UseGuards(AuthGuard)
-  async roomDetail(
-    @Args('roomId', { type: () => ID }) roomId: string,
-  ): Promise<RoomModel | null> {
-    return await this.getRoomDetailUseCase.execute(roomId);
   }
 
   @Mutation(() => RoomModel)

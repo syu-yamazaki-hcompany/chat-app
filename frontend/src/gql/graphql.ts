@@ -27,6 +27,15 @@ export type CreateMessageInput = {
   senderId: Scalars['ID']['input'];
 };
 
+export type CreateRoomInput = {
+  name: Scalars['String']['input'];
+};
+
+export type InviteToRoomInput = {
+  roomId: Scalars['ID']['input'];
+  userId: Scalars['ID']['input'];
+};
+
 export type MessageModel = {
   __typename?: 'MessageModel';
   content: Scalars['String']['output'];
@@ -40,11 +49,35 @@ export type MessageModel = {
 export type Mutation = {
   __typename?: 'Mutation';
   createMessage: MessageModel;
+  createRoom: RoomModel;
+  inviteToRoom: RoomMemberModel;
+  joinRoom: RoomMemberModel;
+  leaveRoom: Scalars['Boolean']['output'];
 };
 
 
 export type MutationCreateMessageArgs = {
   input: CreateMessageInput;
+};
+
+
+export type MutationCreateRoomArgs = {
+  input: CreateRoomInput;
+};
+
+
+export type MutationInviteToRoomArgs = {
+  input: InviteToRoomInput;
+};
+
+
+export type MutationJoinRoomArgs = {
+  roomId: Scalars['ID']['input'];
+};
+
+
+export type MutationLeaveRoomArgs = {
+  roomId: Scalars['ID']['input'];
 };
 
 export type Query = {
@@ -55,6 +88,25 @@ export type Query = {
 
 export type QueryGetMessagesArgs = {
   roomId: Scalars['String']['input'];
+};
+
+export type RoomMemberModel = {
+  __typename?: 'RoomMemberModel';
+  invitedBy?: Maybe<Scalars['ID']['output']>;
+  inviter?: Maybe<UserModel>;
+  joinedAt: Scalars['DateTime']['output'];
+  role: Scalars['String']['output'];
+  roomId: Scalars['ID']['output'];
+  user?: Maybe<UserModel>;
+  userId: Scalars['ID']['output'];
+};
+
+export type RoomModel = {
+  __typename?: 'RoomModel';
+  createdAt: Scalars['DateTime']['output'];
+  createdBy: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type Subscription = {

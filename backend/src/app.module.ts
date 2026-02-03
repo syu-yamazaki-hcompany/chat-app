@@ -8,6 +8,7 @@ import { MessageModule } from './message/message.module';
 import { AuthModule } from '@thallesp/nestjs-better-auth';
 import { auth } from './lib/auth';
 import { Request, Response } from 'express';
+import { RoomModule } from './room/room.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { Request, Response } from 'express';
     }),
     PubSubModule,
     MessageModule,
+    RoomModule,
   ],
   providers: [PrismaService],
 })

@@ -21,12 +21,33 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type RoomModel {
+  id: ID!
+  name: String!
+  createdBy: String!
+  createdAt: DateTime!
+}
+
+type RoomMemberModel {
+  roomId: ID!
+  userId: ID!
+  role: String!
+  joinedAt: DateTime!
+  user: UserModel
+  invitedBy: ID
+  inviter: UserModel
+}
+
 type Query {
   getMessages(roomId: String!): [MessageModel!]!
 }
 
 type Mutation {
   createMessage(input: CreateMessageInput!): MessageModel!
+  createRoom(input: CreateRoomInput!): RoomModel!
+  joinRoom(roomId: ID!): RoomMemberModel!
+  leaveRoom(roomId: ID!): Boolean!
+  inviteToRoom(input: InviteToRoomInput!): RoomMemberModel!
 }
 
 input CreateMessageInput {
@@ -38,6 +59,15 @@ input CreateMessageInput {
 
   """メッセージ内容（最大1000文字）"""
   content: String!
+}
+
+input CreateRoomInput {
+  name: String!
+}
+
+input InviteToRoomInput {
+  roomId: ID!
+  userId: ID!
 }
 
 type Subscription {

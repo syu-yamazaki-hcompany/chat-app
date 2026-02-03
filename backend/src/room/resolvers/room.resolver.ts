@@ -4,9 +4,11 @@ import { AuthGuard } from '@thallesp/nestjs-better-auth';
 import { RoomModel } from '../models/room.model';
 import { RoomMemberModel } from '../models/room-member.model';
 import { CreateRoomInput } from '../inputs/create-room.input';
+import { InviteToRoomInput } from '../inputs/invite-to-room.input';
 import { CreateRoomUseCase } from '../usecases/create-room.usecase';
 import { JoinRoomUseCase } from '../usecases/join-room.usecase';
 import { LeaveRoomUseCase } from '../usecases/leave-room.usecase';
+import { InviteToRoomUseCase } from '../usecases/invite-to-room.usecase';
 import { GetJoinedRoomsUseCase } from '../usecases/get-joined-rooms.usecase';
 import { GetUnjoinedRoomsUseCase } from '../usecases/get-unjoined-rooms.usecase';
 import {
@@ -20,6 +22,7 @@ export class RoomResolver {
     private readonly createRoomUseCase: CreateRoomUseCase,
     private readonly joinRoomUseCase: JoinRoomUseCase,
     private readonly leaveRoomUseCase: LeaveRoomUseCase,
+    private readonly inviteToRoomUseCase: InviteToRoomUseCase,
     private readonly getJoinedRoomsUseCase: GetJoinedRoomsUseCase,
     private readonly getUnjoinedRoomsUseCase: GetUnjoinedRoomsUseCase,
   ) {}
@@ -64,5 +67,18 @@ export class RoomResolver {
     @GqlAuth() user: BetterAuthUser,
   ): Promise<boolean> {
     return await this.leaveRoomUseCase.execute(roomId, user.id);
+  }
+
+  @Mutation(() => RoomMemberModel)
+  @UseGuards(AuthGuard)
+  async inviteToRoom(
+    @Args('input') input: InviteToRoomInput,
+    @GqlAuth() user: BetterAuthUser,
+  ): Promise<RoomMemberModel> {
+    return await this.inviteToRoomUseCase.execute(
+      input.roomId,
+      input.userId,
+      user.id,
+    );
   }
 }

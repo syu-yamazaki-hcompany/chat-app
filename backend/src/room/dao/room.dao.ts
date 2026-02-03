@@ -50,26 +50,4 @@ export class RoomDao extends RoomRepository {
       },
     });
   }
-  async findUnjoinedRooms(userId: string): Promise<RoomWithMembers[]> {
-    return await this.prisma.room.findMany({
-      where: {
-        roomMembers: {
-          none: {
-            userId,
-            isActive: true,
-          },
-        },
-      },
-      include: {
-        roomMembers: {
-          where: {
-            isActive: true,
-          },
-          include: {
-            user: true,
-          },
-        },
-      },
-    });
-  }
 }

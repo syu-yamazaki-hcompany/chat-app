@@ -1,3 +1,5 @@
+// resolvers/room.resolver.ts
+
 import { Resolver, Mutation, Query, Args, ID } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@thallesp/nestjs-better-auth';
@@ -10,7 +12,6 @@ import { JoinRoomUseCase } from '../usecases/join-room.usecase';
 import { LeaveRoomUseCase } from '../usecases/leave-room.usecase';
 import { InviteToRoomUseCase } from '../usecases/invite-to-room.usecase';
 import { GetJoinedRoomsUseCase } from '../usecases/get-joined-rooms.usecase';
-import { GetUnjoinedRoomsUseCase } from '../usecases/get-unjoined-rooms.usecase';
 import {
   GqlAuth,
   BetterAuthUser,
@@ -24,19 +25,12 @@ export class RoomResolver {
     private readonly leaveRoomUseCase: LeaveRoomUseCase,
     private readonly inviteToRoomUseCase: InviteToRoomUseCase,
     private readonly getJoinedRoomsUseCase: GetJoinedRoomsUseCase,
-    private readonly getUnjoinedRoomsUseCase: GetUnjoinedRoomsUseCase,
   ) {}
 
   @Query(() => [RoomModel])
   @UseGuards(AuthGuard)
   async joinedRooms(@GqlAuth() user: BetterAuthUser): Promise<RoomModel[]> {
     return await this.getJoinedRoomsUseCase.execute(user.id);
-  }
-
-  @Query(() => [RoomModel])
-  @UseGuards(AuthGuard)
-  async unjoinedRooms(@GqlAuth() user: BetterAuthUser): Promise<RoomModel[]> {
-    return await this.getUnjoinedRoomsUseCase.execute(user.id);
   }
 
   @Mutation(() => RoomModel)
